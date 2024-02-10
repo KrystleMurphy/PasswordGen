@@ -102,14 +102,15 @@ function getPasswordOptions() {
 
 // Length of password:
 // At least 8 characters but no more than 128.
-var passwordLength = prompt("Please enter the desired length of your password (between 8 and 128 characters):");
+function passwordLength() {
+  prompt("Please enter the desired length of your password (between 8 and 128 characters):");
 
-// changing code to only move on one the conditions are all met - using the while instead of if statement forces the prompt to keep looping until a suitable entry has been made
-while (isNaN(passwordLength) || passwordLength < 8 || passwordLength > 128) {
-  alert("Invalid entry. Please enter a number between 8 and 128.");
-  passwordLength = prompt("Invalid length. Please enter a number between 8 and 128:");
+  // changing code to only move on one the conditions are all met - using the while instead of if statement forces the prompt to keep looping until a suitable entry has been made
+  while (isNaN(passwordLength) || passwordLength < 8 || passwordLength > 128) {
+    alert("Invalid entry. Please enter a number between 8 and 128.");
+    passwordLength = prompt("Invalid length. Please enter a number between 8 and 128:");
+  }
 }
-
 
 // Present a series of prompts for password criteria:
 // Character types - adding confirms for: Lowercase, Uppercase, Numeric, Special characters ($@%&*, etc.)
@@ -152,8 +153,14 @@ var atLeastOneTrue = false;
 if (includeLowerCase || includeUpperCase || includeNumeric || includeSpecial) {
   atLeastOneTrue = true;
 }
+// adding code to restart process if no options are selected
+else {
+  alert("Invalid selections. You must select at least one character type.");
+  passwordLength()
+}
 
-console.log("At least one character type has been used:", atLeastOneTrue);
+console.log("Sucess, at least one character type has been selected:", atLeastOneTrue);
+
 
 
 // Function for getting a random element from an array
