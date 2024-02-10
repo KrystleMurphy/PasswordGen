@@ -104,10 +104,10 @@ function getPasswordOptions() {
 // At least 8 characters but no more than 128.
 var passwordLength = prompt("Please enter the desired length of your password (between 8 and 128 characters):");
 
-if (passwordLength < 8 || passwordLength > 128) {
-  alert("Invalid password length. Please enter a value between 8 and 128.");
-  //Ask the user to enter a valid value again
-  prompt(passwordLength + " is an invalid lenght, please choose a number between 8 and 128");
+// changing code to only move on one the conditions are all met - using the while instead of if statement forces the prompt to keep looping until a suitable entry has been made
+while (isNaN(passwordLength) || passwordLength < 8 || passwordLength > 128) {
+  alert("Invalid entry. Please enter a number between 8 and 128.");
+  passwordLength = prompt("Invalid length. Please enter a number between 8 and 128:");
 }
 
 
@@ -188,11 +188,11 @@ function generatePassword() {
 
 var combinedChars = "";
 
-if (includeLowercase) {
+if (includeLowerCase) {
   combinedChars += lowerCase.join('');
 }
 
-if (includeUppercase) {
+if (includeUpperCase) {
   combinedChars += upperCase.join('');
 }
 
@@ -204,13 +204,12 @@ if (includeSpecial) {
   combinedChars += special.join('');
 }
 
-// for loop to randomly assign values, to match user input number
-for (var i = 0; i < length; i++) {
-  password += getRandom(combinedChars);
+var passwordCharacterOptions = combinedChars.length;
+
+// console.log(passwordCharacterOptions);
+
+for (var i = 0; i < passwordLength; i++) {
+  password += combinedChars.charAt(Math.floor(Math.random() * passwordCharacterOptions));
 }
 
-
-console.log(password); // Display the generated password
-
-//randomElement 
-
+console.log(password);
