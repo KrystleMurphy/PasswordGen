@@ -105,7 +105,7 @@ var upperCase = [
 // function passwordLength() {
 //   prompt("Please enter the desired length of your password (between 8 and 128 characters):");
 
-  // changing code to only move on one the conditions are all met - using the while instead of if statement forces the prompt to keep looping until a suitable entry has been made
+// changing code to only move on one the conditions are all met - using the while instead of if statement forces the prompt to keep looping until a suitable entry has been made
 //   while (isNaN(passwordLength) || passwordLength < 8 || passwordLength > 128) {
 //     alert("Invalid entry. Please enter a number between 8 and 128.");
 //     passwordLength = prompt("Invalid length. Please enter a number between 8 and 128:");
@@ -229,55 +229,43 @@ function getRandom(arr) {
 
 function generatePassword() {
   var options = getPasswordOptions();
-
   var combinedChars = [];
   var guarenteedChars = [];
   var results = [];
 
-
-
   if (includeLowerCase) {
     combinedChars = combinedChars.concat(lowerCase);
-    guarenteedChars.push(getRandom(lowerCase))
+    guarenteedChars.push(getRandom(lowerCase));
   }
-  
+
   if (includeUpperCase) {
     combinedChars = combinedChars.concat(upperCase);
-    guarenteedChars.push(getRandom(upperCase))
+    guarenteedChars.push(getRandom(upperCase));
   }
-  
+
   if (includeNumeric) {
     combinedChars = combinedChars.concat(numbers);
-    guarenteedChars.push(getRandom(numbers))
+    guarenteedChars.push(getRandom(numbers));
   }
-  
+
   if (includeSpecial) {
     combinedChars = combinedChars.concat(special);
-    guarenteedChars.push(getRandom(special))
+    guarenteedChars.push(getRandom(special));
   }
 
-// for loop and randomise the possibel character combinations
-
-for (var i = 0; i < options.length; i++) {
-  if (options.includeLowerCase) {
-    results.push(getRandom(lowerCase));
+  // Randomize the possible character combinations
+  for (var i = 0; i < options.length; i++) {
+    var randomChar = getRandom(combinedChars);
+    results.push(randomChar);
   }
-  if (options.includeUpperCase) {
-    results.push(getRandom(upperCase));
-  }
-  if (options.includeNumeric) {
-    results.push(getRandom(numbers));
-  }
-  if (options.includeSpecial) {
-    results.push(getRandom(special));
-  }
-}
-//then push into results array
 
-// next for loop, take the guarrented characters, results = guarentee - each time add the selected character to the results
+  // Add the guaranteed characters to the results array
+  results = results.concat(guarenteedChars);
 
-// return results and turn into a string
+  // Join the elements of the results array into a string
+  var password = results.join("");
 
+  return password;
 }
 
 
