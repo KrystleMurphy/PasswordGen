@@ -233,22 +233,22 @@ function generatePassword() {
   var guarenteedChars = [];
   var results = [];
 
-  if (includeLowerCase) {
+  if (lowerCase) {
     combinedChars = combinedChars.concat(lowerCase);
     guarenteedChars.push(getRandom(lowerCase));
   }
 
-  if (includeUpperCase) {
+  if (upperCase) {
     combinedChars = combinedChars.concat(upperCase);
     guarenteedChars.push(getRandom(upperCase));
   }
 
-  if (includeNumeric) {
+  if (numbers) {
     combinedChars = combinedChars.concat(numbers);
     guarenteedChars.push(getRandom(numbers));
   }
 
-  if (includeSpecial) {
+  if (special) {
     combinedChars = combinedChars.concat(special);
     guarenteedChars.push(getRandom(special));
   }
@@ -277,10 +277,5 @@ function writePassword() {
 }
 // Add event listener to generate button
 generateBtn.addEventListener('click', writePassword);
-
-
-
-
-
 
 // Once all prompts are answered, the password should be generated and displayed in an alert or written to the page.
